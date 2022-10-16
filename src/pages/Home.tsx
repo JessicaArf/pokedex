@@ -1,9 +1,9 @@
 import {CardDetails} from "../components/CardDetails"
 import {NavBar} from "../components/NavBar"
-import {pokemons} from "../assets/pokemon.json"
+import pokemons from "../assets/pokemon.json"
 import './Home.css'
 
-const Home = () => {
+export const Home = () => {
   return (
     <> 
     <NavBar/>
@@ -22,4 +22,3 @@ const Home = () => {
   )
 }
 
-export default Home
