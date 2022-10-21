@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
-import {CardDetails, CardProps} from "../components/CardDetails"
+import {CardPokemon, CardProps} from "../components/CardPokemon"
 import {NavBar} from "../components/NavBar"
 import { api } from "../services/api"
 import { LoadingPokebola } from "../components/LoadingPokebola"
-import './Home.css'
+import {List, Title, Input, SearchContainer} from './Home.style'
 
 export const Home = () => {
 
   const [ isLoading, setIsLoading] = useState(true);
-  const [pokemonList, setPokemonList] = useState <CardProps[]>([]);;
+  const [pokemonList, setPokemonList] = useState <CardProps[]>([]);
+  const [searchText, setSearchText] = useState('')
 
   async function getPokemonData() {
   const {data} = await api.get("pokemon?limit=151")
@@ -40,18 +41,25 @@ export const Home = () => {
   
   return (
     <> 
-    <NavBar/>
-    <h1 className="title">Encontre todos os pokémons em um só lugar</h1>
-    <div className="list">
-    {pokemonList.map((pokemon, index)=> (
-    <CardDetails  
+    <NavBar />
+    <Title>Encontre todos os pokémons em um só lugar</Title>
+    <SearchContainer>
+    <Input type="text" 
+    placeholder="Buscar por NOME" 
+    value={searchText} 
+    onChange={(e) => setSearchText(e.target.value)} />
+    </SearchContainer>
+    <List>
+    {pokemonList
+    .filter((pokemon) => pokemon.name.includes(searchText) || String(pokemon.id) == searchText)
+    .map((pokemon, index)=> (
+    <CardPokemon  
     key={index}
     id={pokemon.id}
     name={pokemon.name}
     types={pokemon.types}
     />))}
-    </div>
-      
+    </List>
     </>
   )
 }
