@@ -3,7 +3,7 @@ import {CardPokemon, CardProps} from "../components/CardPokemon"
 import {NavBar} from "../components/NavBar"
 import { api } from "../services/api"
 import { LoadingPokebola } from "../components/LoadingPokebola"
-import {List, Title, Input, SearchContainer} from './Home.style'
+import * as S from './Home.style'
 
 export const Home = () => {
 
@@ -42,14 +42,14 @@ export const Home = () => {
   return (
     <> 
     <NavBar />
-    <Title>Encontre todos os pokémons em um só lugar</Title>
-    <SearchContainer>
-    <Input type="text" 
+    <S.Title>Encontre todos os pokémons em um só lugar</S.Title>
+    <S.SearchContainer>
+    <S.Input type="text" 
     placeholder="Buscar por NOME" 
     value={searchText} 
     onChange={(e) => setSearchText(e.target.value)} />
-    </SearchContainer>
-    <List>
+    </S.SearchContainer>
+    <S.List>
     {pokemonList
     .filter((pokemon) => pokemon.name.includes(searchText) || String(pokemon.id) == searchText)
     .map((pokemon, index)=> (
@@ -59,7 +59,7 @@ export const Home = () => {
     name={pokemon.name}
     types={pokemon.types}
     />))}
-    </List>
+    </S.List>
     </>
   )
 }

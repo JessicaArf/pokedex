@@ -21,10 +21,3 @@ line-height: 21px;
 color: #747476;
 `;
 
-// export const Input= styled.input`
-// width: 30%;
-// font-size: 1.2rem;
-// border-color: #17171b;
-// padding: 0.5rem 1rem;
-// border-radius: 7px;
-// `

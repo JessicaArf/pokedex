@@ -1,63 +1,61 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect} from "react";
 import {NavBar} from "../components/NavBar";
-import { api } from "../services/api"
-import { CardDetails, CardDetailsProps } from "../components/CardDetails";
+import {Badge} from "../components/Badge";
+import { CardProps } from "../components/CardPokemon";
 import { LoadingPokebola } from "../components/LoadingPokebola";
+import {api} from "../services/api";
+import * as S from "./Details.style";
 
 
-const Details = () => {
-
-  const {id} = useParams();
-
-  const [ isLoading, setIsLoading] = useState(true);
-  const [pokemonList, setPokemonList] = useState <CardDetailsProps[]>([]);;
+function Details() {
+  const { id } = useParams();
+  
+  const [isLoading, setIsLoading] = useState(true);
+  const [pokemonData, setPokemonData] = useState<CardProps>(
+    {} as CardProps
+  );
 
   async function getPokemonData() {
-  const {data} = await api.get("pokemon?limit=1")
+    const { data } = await api.get("pokemon/" + id);
+    setPokemonData({
+      id: data.id,
+      name: data.name,
+      types: data.types,
+    });
+    setIsLoading(false);
+  }
 
-  const dataComplete = await Promise.all(
-    data.results.map(async ( result: {url: string}) => {
-      const { data }= await api.get(result.url);
-
-      return {
-        id: data.id,
-        name: data.name,
-        types: data.types,
-        weight: data.weight,
-        heigth: data.height
-      };
-    })  )
-    setPokemonList(dataComplete);
-    setIsLoading(false)
-  };
-
-  
   useEffect(() => {
     getPokemonData();
-    }, []);
-  
-  
-    if(isLoading){
+  }, []);
+
+  if (isLoading) {
       return <LoadingPokebola message="Carregando.."/>
-    }
+  }
+
   return (
     <>
-   <NavBar hasGoBack={true}/>
-    {pokemonList.map((pokemon, index) => (
-     <CardDetails
-     key={index}
-     id={pokemon.id}
-     name={pokemon.name}
-     types={pokemon.types}
-     weigth={pokemon.weigth}
-     height={pokemon.height}
-     />
-     ))}
-   
+      <NavBar hasGoBack />
 
-  </>
-  )
-};
+      <S.Container>
+        <S.Image
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+          alt={pokemonData.name}
+        />
+        <S.Card
+          className={`type--${pokemonData.types[0].type.name.toLowerCase()}`}
+        >
+          <S.Number>#{String(id).padStart(3, "0")}</S.Number>
+          <S.Title>{pokemonData.name}</S.Title>
+
+          {pokemonData.types.map((item, index) => {
+            return <Badge key={index} name={item.type.name} />;
+          })}
+        </S.Card>
+      </S.Container>
+    </>
+  );
+}
 
 export default Details;

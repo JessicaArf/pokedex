@@ -7,7 +7,7 @@ const router = createBrowserRouter([
         element: <Home/>
     },
     {
-        path: "/details/:idPokemon",
+        path: "/details/:id",
         element: <Details/>
     },
 ])
