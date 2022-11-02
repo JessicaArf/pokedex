@@ -21,3 +21,10 @@ line-height: 21px;
 color: #747476;
 `;
 
+export const TotalPokemons = styled.span`
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: ${(props) => props.color};
+  margin-right: 2rem;
+`;

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { StoreState } from "../redux";
+import { add, remove } from "../redux/favoriteSlice";
 import {NavBar} from "../components/NavBar";
 import {Badge} from "../components/Badge";
 import { CardProps } from "../components/CardPokemon";
@@ -8,13 +11,31 @@ import {api} from "../services/api";
 import * as S from "./Details.style";
 
 
-function Details() {
+type DetailsProps = CardProps & {
+  height: number;
+  weight: number
+}
+
+
+export function Details() {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const listaPokemonsFavoritos = useSelector(
+    (state: StoreState) => state.favorite
+  );
   
   const [isLoading, setIsLoading] = useState(true);
-  const [pokemonData, setPokemonData] = useState<CardProps>(
-    {} as CardProps
+  const [pokemonData, setPokemonData] = useState<DetailsProps>(
+    {} as DetailsProps
   );
+
+  function handleClickAdd() {
+    dispatch(add(id));
+  }
+
+  function handleClickRemove() {
+    dispatch(remove(id));
+  }
 
   async function getPokemonData() {
     const { data } = await api.get("pokemon/" + id);
@@ -22,6 +43,8 @@ function Details() {
       id: data.id,
       name: data.name,
       types: data.types,
+      height: data.height/10,
+      weight: data.weight/10,
     });
     setIsLoading(false);
   }
@@ -50,12 +73,29 @@ function Details() {
           <S.Title>{pokemonData.name}</S.Title>
 
           {pokemonData.types.map((item, index) => {
-            return <Badge key={index} name={item.type.name} />;
+            return <Badge key={index} name={item.type.name} />
           })}
+
+          <S.Label>Peso</S.Label>
+          <S.Value>{pokemonData.weight}kg</S.Value>
+          <S.Label>Tamanho</S.Label>
+          <S.Value>{pokemonData.height}m</S.Value>
+
+          {!!listaPokemonsFavoritos.find(
+            (item) => String(item) === String(id)
+          ) ? (
+            <S.Button className="button" onClick={handleClickRemove}>
+              Remover dos favoritos
+            </S.Button>
+          ) : (
+            <S.Button className="button" onClick={handleClickAdd}>
+              Adicionar aos favoritos
+            </S.Button>
+          )}
         </S.Card>
       </S.Container>
     </>
   );
 }
 
-export default Details;
+

@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
  height: calc(100vh - 6rem);
  display: flex;
+ justify-content: center;
  align-items: center;
+ padding: 3rem 0;
 
  @media (max-width: 950px) {
  flex-direction: column;
@@ -12,23 +14,52 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
- max-height: 50vh;
- margin: 10%;
+ max-height: 55vh;
+ margin-right: 10%;
 
  @media (max-width: 950px) {
- height: 60vw;
  margin-bottom: 15px;
+ }
+
+ @media (max-width: 700px){
+  max-height: 38vh;
+ }
+
+ @media (max-width: 380px) {
+  max-height: 30vh;
+  
  }
 
 `;
 
 export const Card = styled.div`
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
- border-radius: 20px;
- padding: 5%;
- width: 90vw;
+ border: 4px solid #ccc;
+ padding: 3%;
+ width: 25vw;
  height: 50vh;
+ border-radius: 20px;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+ @media (max-width: 950px) {
+ width: 50vw;
+ height: 38vh;
+ }
+
+ @media (max-width: 770px) {
+  height: 40vh;
+ }
+
+ 
+ @media (max-width: 700px) {
+  height: 55vh;
+  width: 55vw;
+ }
+
+  
+ @media (max-width: 395px) {
+  height: 70vh;
+  width: 60vw;
+ }
 
 &.type--bug {
   background-color: #8bd674;
@@ -119,5 +150,39 @@ export const Title = styled.h1`
  margin-top: 3%;
  margin-bottom: 8%;
 
-
+ @media (max-width: 950px) {
+ margin-bottom: 10%;
+ }
 `;
+
+export const Button = styled.button`
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-top: 0.8rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgba(23, 23, 27, 0.6);
+  cursor: pointer;
+
+  &:active{
+    transform: scale(1.1);
+    transition: all 0.5s;
+  }
+`;
+
+export const Label = styled.span`
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  color: rgba(23, 23, 27, 0.6);
+  `;
+
+  export const Value = styled.p`
+   font-weight: 700;
+   font-size: 36px;
+   line-height: 40px;
+   color: #ffffff;
+  `;
