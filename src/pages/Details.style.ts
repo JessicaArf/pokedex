@@ -27,14 +27,13 @@ export const Image = styled.img`
 
  @media (max-width: 380px) {
   max-height: 30vh;
-  
  }
-
+ 
 `;
 
 export const Card = styled.div`
  border: 4px solid #ccc;
- padding: 3%;
+ padding: 3% 5%;
  width: 25vw;
  height: 50vh;
  border-radius: 20px;

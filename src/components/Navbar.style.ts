@@ -25,6 +25,6 @@ export const TotalPokemons = styled.span`
   font-weight: 400;
   font-size: 1rem;
   line-height: 1rem;
-  color: ${(props) => props.color};
+  color: #17171b;
   margin-right: 2rem;
 `;

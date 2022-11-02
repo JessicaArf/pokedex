@@ -4,6 +4,7 @@ import {NavBar} from "../components/NavBar"
 import { api } from "../services/api"
 import { LoadingPokebola } from "../components/LoadingPokebola"
 import * as S from './Home.style'
+import { Title } from "../components/Title"
 
 export const Home = () => {
 
@@ -42,7 +43,7 @@ export const Home = () => {
   return (
     <> 
     <NavBar />
-    <S.Title>Encontre todos os pokémons em um só lugar</S.Title>
+    <Title text="Encontre todos os pokémons em um só lugar"/>
     <S.SearchContainer>
     <S.Input type="text" 
     placeholder="Buscar por NOME" 

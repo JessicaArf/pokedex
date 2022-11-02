@@ -20,7 +20,7 @@ type DetailsProps = CardProps & {
 export function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const listaPokemonsFavoritos = useSelector(
+  const listPokemonsFavorites = useSelector(
     (state: StoreState) => state.favorite
   );
   
@@ -81,7 +81,7 @@ export function Details() {
           <S.Label>Tamanho</S.Label>
           <S.Value>{pokemonData.height}m</S.Value>
 
-          {!!listaPokemonsFavoritos.find(
+          {!!listPokemonsFavorites.find(
             (item) => String(item) === String(id)
           ) ? (
             <S.Button className="button" onClick={handleClickRemove}>
