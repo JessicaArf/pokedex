@@ -1,11 +1,12 @@
 import { CardPokemon, CardProps } from '../components/CardPokemon';
 import { NavBar } from '../components/NavBar'
 import { Title } from '../components/Title'
+import { LoadingPokebola } from '../components/LoadingPokebola';
+import { api } from '../services/api';
 import { StoreState } from '../redux';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { api } from '../services/api';
-import { LoadingPokebola } from '../components/LoadingPokebola';
+import {List} from "../components/List.style"
 
 
 export function Favorite() {
@@ -45,6 +46,7 @@ export function Favorite() {
     <>
     <NavBar />
      <Title text= "Seus pokémons favoritos"/>
+     <List>
      {pokemonList.map((pokemon, index) => {
       return ( 
         <CardPokemon
@@ -54,6 +56,7 @@ export function Favorite() {
         types={pokemon.types}
         />)
      })}
+     </List>
     </>
   )
 }

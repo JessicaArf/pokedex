@@ -10,6 +10,10 @@
 <p align="left">Projeto feito para estudo de React, onde foi realizado o consumo da API de Pokémons para prática de axios, redux e styled components.</p>
 
 
+<p align="center"><img alt="pokedex" height="500" src="./public/assets/print-pagina.png"></p>
+
+
+
 <hr>
 
 ## 🖥 Tecnologias
