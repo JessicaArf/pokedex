@@ -1,9 +1,14 @@
+<p align="center"><img alt="parrot" height="150" src="https://i.pinimg.com/originals/3f/53/20/3f5320bda51f29d0e6ef7a61d030c234.png"></p>
+
+
+
 <h1 align="center"><strong>Pokédex<strong></h1>
 
 
 ## 📋 Enunciado
 
-<p align="left">Projeto feito para estudo de React, onde foi utilizada a API de Pókemon</p>
+<p align="left">Projeto feito para estudo de React, onde foi realizado o consumo da API de Pokémons para prática de axios, redux e styled components.</p>
+
 
 <hr>
 
