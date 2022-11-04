@@ -52,7 +52,7 @@ export const Home = () => {
     </S.SearchContainer>
     <S.List>
     {pokemonList
-    .filter((pokemon) => pokemon.name.includes(searchText) || String(pokemon.id) == searchText)
+    .filter((pokemon) => pokemon.name.includes(searchText.toLocaleLowerCase()) || String(pokemon.id) == searchText)
     .map((pokemon, index)=> (
     <CardPokemon  
     key={index}
